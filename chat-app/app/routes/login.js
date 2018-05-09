@@ -10,13 +10,14 @@ export default Route.extend({
 
   actions: {
     logIn() {
+      console.log(this.controller.get('userEmail') + ": " + this.controller.get('userPassword'));
       this.get('session').open('firebase', {
         provider: 'password',
         email: this.controller.get('userEmail'),
         password: this.controller.get('userPassword')
       }).then(function() {
-          this.controller.set('userEmail', '');
-          this.controller.set('userPassword', '');
+          this.set('userEmail', '');
+          this.set('userPassword', '');
           this.transitionTo('index');
         }.bind(this));
 
